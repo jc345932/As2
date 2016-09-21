@@ -10,7 +10,7 @@ def menuchoice(userName):
             print("Invalid menu choice.")
             choice = str.upper(input("\n Tropical Airline Ordering System.\n\n Enter your choice:\n(I)nstrutions\n(O)rder ticket\n(E)xit"))
     while choice =="O":
-        ticketUser = str.upper("\n" + userName + ", ticket for:\n(Y)ou \n(S)omeone else\n")
+        ticketUser = str.upper(input("\n" + userName + ", is this ticket for:\n(Y)ou \n(S)omeone else\n"))
         if ticketUser =="S":
             user = str(input("\n Please enter the name of the person travelling.\n"))
         elif ticketUser =="Y":
@@ -18,6 +18,12 @@ def menuchoice(userName):
         return user
     if choice =="E":
         print("\n Thank your for visiting Tropical Airlines")
+def seat(seatType):
+    seatType = str.upper(input("Is this a return trip(R) or One-Way(O)"))
+    while seatType!="R" and seatType!="O":
+        print("Invalid menu choice")
+        seatType = str.upper(input("Is this a return trip(R) or One-Way(O)"))
+    return seatType
 def getDesR(destR):
     while destR !="C" and destR !="S" and destR !="P":
         print("Invalid menu choice.")
@@ -48,7 +54,7 @@ def getDesO(destO):
 def getTypeofFare(typeofFare):
     while typeofFare!="B" and typeofFare!="E" and typeofFare!="F":
         print("Invalid menu choice.")
-        typeofFare =str.upper((input("\n Please choose the type of fare. Fees are displayed below and are in addition to the basic fare.\nPlease note choosing Frugal fare means you will not be offered a seat choice.\n (B)usiness -$275 \n(E)conomy \n(F)rugal -$0")))
+        typeofFare =str.upper((input("\n Please choose the type of fare. Fees are displayed below and are in addition to the basic fare.\nPlease note choosing Frugal fare means you will not be offered a seat choice.\n (B)usiness -$275 \n(E)conomy-$25 \n(F)rugal -$0")))
     if typeofFare =="B":
         typeFare = 275
     elif typeofFare =="E":
@@ -68,14 +74,27 @@ def getTypeofSeat(typeofSeat):
         seatFare =-25
     return seatFare
 def calcTotal(dest, seatChoice, seatType):
-    totalPrice = dest +seatChoice +seatType
+    totalPrice = int(dest +seatChoice +seatType)
     return totalPrice
 def main():
     userName = str(input("What is your name:"))
     print("Welcome", userName)
-    menuchoice(userName)
-
-
-
+    name = menuchoice(userName)
+    seatType = seat(type)
+    if seatType =="R":
+            dest = getDesR(seatType)
+    elif seatType =="O":
+            dest = getDesO(seatType)
+    seatChoice= getTypeofFare(seat)
+    if seat =="B" and seat =="E":
+        getTypeofSeat(seat)
+    else: getTypeofSeat(0)
+    userAge =int(input("\nHow old is the person travelling?Travellers under 16 years old will receive a 50% discount for the child fare."))
+    if userAge > 16:
+        totalFare = calcTotal(dest, seatChoice, seatType)
+    else:
+        totalFare =calcTotal(dest, seatChoice, seatType)*0.5
+    print("Calculating Fare...")
+    print("\n\n Ticket for:", name,"\n", dest,"\n", seatType,"\n",seatChoice,"\nAge:",userAge,"\nTotal price:",totalFare)
 
 main()
