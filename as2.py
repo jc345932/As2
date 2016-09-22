@@ -96,5 +96,5 @@ def main():
         totalFare =calcTotal(dest, seatChoice, seatType)*0.5
     print("Calculating Fare...")
     print("\n\n Ticket for:", name,"\n", dest,"\n", seatType,"\n",seatChoice,"\nAge:",userAge,"\nTotal price:",totalFare)
-
+...
 main()
